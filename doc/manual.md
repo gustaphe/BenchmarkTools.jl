@@ -513,6 +513,7 @@ Note that changes in GC time and allocation count aren't classified by `judge`. 
 The `Trial` object can be visualized in a plot like this:
 
 ```julia
+using Plots, StatsPlots
 b = @benchmarkable lu(rand(10,10))
 t = run(b)
 
@@ -903,6 +904,7 @@ Note that terminal child group nodes are not considered "leaves" by the `leaves`
 If a `BenchmarkGroup` contains (only) `Trial`s, it can be visualized simply by
 
 ```julia
+using Plots, StatsPlots
 t = run(g)
 plot(t)
 ```
