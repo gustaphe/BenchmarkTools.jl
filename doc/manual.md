@@ -15,6 +15,7 @@ Bold links indicate sections that should be read carefully in order to avoid com
     * [`Trial` and `TrialEstimate`](#trial-and-trialestimate)
     * **[Which estimator should I use?](#which-estimator-should-i-use)**
     * [`TrialRatio` and `TrialJudgement`](#trialratio-and-trialjudgement)
+    * [Plotting `Trial`s](#plotting-trials)
 - [The `BenchmarkGroup` type](#the-benchmarkgroup-type)
     * [Defining benchmark suites](#defining-benchmark-suites)
     * [Tuning and running a `BenchmarkGroup`](#tuning-and-running-a-benchmarkgroup)
@@ -22,6 +23,7 @@ Bold links indicate sections that should be read carefully in order to avoid com
     * [Indexing into a `BenchmarkGroup` using `@tagged`](#indexing-into-a-benchmarkgroup-using-tagged)
     * [Indexing into a `BenchmarkGroup` using another `BenchmarkGroup`](#indexing-into-a-benchmarkgroup-using-another-benchmarkgroup)
     * [Indexing into a `BenchmarkGroup` using a `Vector`](#indexing-into-a-benchmarkgroup-using-a-vector)
+    * [Plotting `BenchmarkGroup`s](#plotting-benchmarkgroups)
 - **[Caching `Parameters`](#caching-parameters)**
 - [Miscellaneous tips and info](#miscellaneous-tips-and-info)
 
@@ -507,6 +509,20 @@ true
 
 Note that changes in GC time and allocation count aren't classified by `judge`. This is because GC time and allocation count, while sometimes useful for answering *why* a regression occurred, are not generally useful for answering *if* a regression occurred. Instead, it's usually only differences in time and memory usage that determine whether or not a code change is an improvement or a regression. For example, in the unlikely event that a code change decreased time and memory usage, but increased GC time and allocation count, most people would consider that code change to be an improvement. The opposite is also true: an increase in time and memory usage would be considered a regression no matter how much GC time or allocation count decreased.
 
+### Plotting `Trial`s
+The `Trial` object can be visualized in a plot like this:
+
+```julia
+b = @benchmarkable lu(rand(10,10))
+t = run(b)
+
+plot(t,outliers=false)
+```
+
+This will show the timing results of the trial as a boxplot.
+You can use any keyword arguments from `StatsPlots.boxplot()` or `Plots.plot()`.
+
+
 # The `BenchmarkGroup` type
 
 In the real world, one often deals with whole suites of benchmarks rather than just individual benchmarks. The `BenchmarkGroup` type serves as the "organizational unit" of such suites, and can be used to store and structure benchmark definitions, raw `Trial` data, estimation results, and even other `BenchmarkGroup` instances.
@@ -882,6 +898,16 @@ julia> collect(leaves(g))
 ```
 
 Note that terminal child group nodes are not considered "leaves" by the `leaves` function.
+
+### Plotting `BenchmarkGroup`s
+If a `BenchmarkGroup` contains (only) `Trial`s, it can be visualized simply by
+
+```julia
+t = run(g)
+plot(t)
+```
+
+This will display each `Trial` as a boxplot.
 
 # Caching `Parameters`
 
