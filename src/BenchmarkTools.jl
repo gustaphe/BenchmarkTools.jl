@@ -9,8 +9,6 @@ using UUIDs: uuid4
 using Printf
 
 using RecipesBase
-using StatsPlots
-
 
 const BENCHMARKTOOLS_VERSION = v"0.4.3"
 
