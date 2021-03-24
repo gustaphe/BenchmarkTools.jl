@@ -9,7 +9,7 @@ end
 @recipe function f(g::BenchmarkGroup)
     legend --> false
     yguide --> "t / ns"
-    for k in g.tags
+    for k in keys(g)
         @series begin
             label --> string(k)
             xticks --> true
