@@ -23,8 +23,8 @@ Bold links indicate sections that should be read carefully in order to avoid com
     * [Indexing into a `BenchmarkGroup` using another `BenchmarkGroup`](#indexing-into-a-benchmarkgroup-using-another-benchmarkgroup)
     * [Indexing into a `BenchmarkGroup` using a `Vector`](#indexing-into-a-benchmarkgroup-using-a-vector)
 - **[Caching `Parameters`](#caching-parameters)**
-- [Miscellaneous tips and info](#miscellaneous-tips-and-info)
 - [Visualizing benchmark results](#visualizing-benchmark-results)
+- [Miscellaneous tips and info](#miscellaneous-tips-and-info)
 
 # Introduction
 
