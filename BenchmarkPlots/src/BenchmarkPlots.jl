@@ -1,5 +1,9 @@
+module BenchmarkPlots
+using RecipesBase
+using BenchmarkTools: Trial, BenchmarkGroup
+
 @recipe function f(::Type{Trial}, t::Trial)
-    seriestype --> :boxplot
+    seriestype --> :violin
     legend --> false
     yguide --> "t / ns"
     xticks --> false
@@ -16,4 +20,6 @@ end
             [string(k)], g[k]
         end
     end
+end
+
 end
