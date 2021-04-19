@@ -10,10 +10,10 @@ using BenchmarkTools: Trial, BenchmarkGroup
     t.times
 end
 
-@recipe function f(g::BenchmarkGroup)
+@recipe function f(g::BenchmarkGroup, keys=keys(g))
     legend --> false
     yguide --> "t / ns"
-    for k in keys(g)
+    for k in keys
         @series begin
             label --> string(k)
             xticks --> true
